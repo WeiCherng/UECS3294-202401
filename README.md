@@ -1,3 +1,14 @@
+
+## About This Project
+
+This Project is stricly prohibited from Kim Yuan Yuan
+He or She shall not have accessed to this repository and will be reported to Poan Chee Kent to take the nessesary punishment if found guilty in possesion.
+
+A references photo for KIM YUAN YUAN:
+
+![kyy](https://github.com/WeiCherng/UECS3294-202401/assets/87268237/2a57ec30-13ed-4f95-818f-03ec3dba6a41)
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
