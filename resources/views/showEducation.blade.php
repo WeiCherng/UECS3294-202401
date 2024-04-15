@@ -7,7 +7,7 @@
         @if($education)
             <div class="card">
                 <div class="card-body">
-                    <p><strong>Employee ID:</strong> {{ $education->EmpID }}</p>
+                    <p><strong>Employee ID:</strong> {{ $education->EmpID }}</p>   
 
                     <p><strong>PG Course:</strong> {{ $education->CoursePG }}</p>
                     <p><strong>PG School/College:</strong> {{ $education->SchoolCollegePG }}</p>
