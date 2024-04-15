@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\EducationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +51,15 @@ Route::get('/admin/employees', function () {
     return view('admin.allemployees');
 });
 
+//EXPERIENCE
+Route::get('/addExperience', function(){ return view('addExperience'); });
+Route::post('/addExperience', [ExperienceController::class, 'addExperience']);
+Route::get('/experience/{userId}/displayExperience', [ExperienceController::class, 'displayExperience'])->name('displayExperience');
+
+//EDUCATION
+Route::get('/addEducation', function () { return view('addEducation'); });
+Route::post('/addEducation', [EducationController::class, 'addEducation']);
+Route::get('/education/{userId}/displayEducation', [EducationController::class, 'displayEducation'])->name('displayEducation');
 
 
 Auth::routes();
