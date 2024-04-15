@@ -61,7 +61,21 @@
                                 <th>Emp Contact no</th>
                                 <th>Emp Joining Date</th>
                                 <th>Action</th>
-
+                            </tr>
+                            @foreach(users as user)
+                            <tr>
+                                <td><?php echo $cnt; ?></td>
+                                <td>{{$user['EmpCode']}}</td>
+                                <td>{{$user['EmpFName']}}</td>
+                                <td>{{$user['EmpLName']}}</td>
+                                <td>{{$user['EmpEmail']}}</td>
+                                <td>{{$user['EmpContactNum']}}</td>
+                                <td>{{$user['EmpJoingDate']}}</td>
+                                <td><a href="editempprofile/{{$user['ID']}}">Edit Profile Details</a> |
+                                    <a href="editempeducation/{{$user['ID']}}">Edit Education
+                                        Details</a> |
+                                    <a href="editempexp/{{$user['ID']}}">Edit Experience Details</a>
+                                </td>
                             </tr>
 {{-- 
                             <?php
