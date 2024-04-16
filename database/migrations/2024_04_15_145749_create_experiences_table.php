@@ -27,7 +27,7 @@ class CreateExperiencesTable extends Migration
             $table->decimal('Employer2CTC', 10, 2)->nullable();
             $table->string('Employer2WorkDuration')->nullable();
             $table->string('Employer3Name')->nullable();
-            $table->string('Employer3Designation')->nullable();
+            $table->string('Employer3Designation')->nullable(); 
             $table->decimal('Employer3CTC', 10, 2)->nullable();
             $table->string('Employer3WorkDuration')->nullable();
             $table->timestamps();
