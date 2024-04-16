@@ -52,6 +52,13 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
+                            @if (session()->has('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
                             <tr>
                                 <th>Employee ID</th>
                                 <th>Name</th>
@@ -63,25 +70,31 @@
                             </tr>
                             @php
                             @endphp
-                            @foreach($users as $user)
-                            <tr>
-                                <td>{{$user['id']}}</td>
-                                <td>{{$user['name']}}</td>
-                                <td>{{$user['email']}}</td>
-                                <td>{{$user['department']}}</td>
-                                <td>{{$user['jobTitle']}}</td>
-                                <td>{{$user['gender']}}</td>
-                                <td>{{$user['contactNo']}}</td>
-                                <td><a href="editempprofile/{{$user['id']}}"><button class="btn btn-sm btn-warning text-white" type="button">Edit Profile Details</button></a> 
-                                    <a href="editempeducation/{{$user['id']}}"><button class="btn btn-sm btn-success" type="button">Edit Education
-                                        Details</button></a> 
-                                    <a href="editempexp/{{$user['id']}}"><button class="btn btn-sm btn-info text-white" type="button">Edit Experience Details</button></a>
-                                    <a href="editempexp/{{$user['id']}}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
-                                </td>
-                            </tr>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $user['id'] }}</td>
+                                    <td>{{ $user['name'] }}</td>
+                                    <td>{{ $user['email'] }}</td>
+                                    <td>{{ $user['department'] }}</td>
+                                    <td>{{ $user['jobTitle'] }}</td>
+                                    <td>{{ $user['gender'] }}</td>
+                                    <td>{{ $user['contactNo'] }}</td>
+                                    <td><a href="editempprofile/{{ $user['id'] }}"><button
+                                                class="btn btn-sm btn-warning text-white" type="button">Edit Profile
+                                                Details</button></a>
+                                        <a href="editempeducation/{{ $user['id'] }}"><button
+                                                class="btn btn-sm btn-success" type="button">Edit Education
+                                                Details</button></a>
+                                        <a href="editempexp/{{ $user['id'] }}"><button
+                                                class="btn btn-sm btn-info text-white" type="button">Edit Experience
+                                                Details</button></a>
+                                        <a href="editempexp/{{ $user['id'] }}"><button type="button"
+                                                class="btn btn-sm btn-danger">Delete</button></a>
+                                    </td>
+                                </tr>
                             @endforeach
                         </table>
-                        <span>{{$users->links()}}</span>
+                        <span>{{ $users->links() }}</span>
                     </div>
 
 
@@ -133,7 +146,7 @@
 
 </html>
 <style>
-.w-5{
-display: none
-}
+    .w-5 {
+        display: none
+    }
 </style>
