@@ -57,7 +57,7 @@ class AdminController extends Controller
         $expRecords = Experience::where('user_id', $id)->get();
 
         if ($expRecords->isEmpty()) {
-            return back()->with('error', 'No education records found for the given employee.');
+            return back()->with('error', 'No experience records found for the given employee.');
         }
         return view('admin.editempeducation', [
             'data' => $expRecords->first(),
