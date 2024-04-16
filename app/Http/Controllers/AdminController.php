@@ -59,8 +59,8 @@ class AdminController extends Controller
         if ($expRecords->isEmpty()) {
             return back()->with('error', 'No experience records found for the given employee.');
         }
-        return view('admin.editempeducation', [
-            'data' => $expRecords->first(),
+        return view('admin.editempexp', [
+            'experience' => $expRecords->first(),
             'employee_id' => $id,
         ]);
     }
@@ -98,6 +98,16 @@ class AdminController extends Controller
             'data' => $educationRecords->first(),
             'employee_id' => $id,
         ]);
+    }
+
+    public function destroy($id)
+    {
+        // Find the education record by ID and delete it
+        $data = User::findOrFail($id);
+        $data->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('allemp')->with('success', 'Eployee deleted successfully.');
     }
 
     function loadAllEmp()

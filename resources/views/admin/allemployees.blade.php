@@ -88,7 +88,7 @@
                                         <a href="editempexp/{{ $user['id'] }}"><button
                                                 class="btn btn-sm btn-info text-white" type="button">Edit Experience
                                                 Details</button></a>
-                                        <a href="editempexp/{{ $user['id'] }}"><button type="button"
+                                        <a href="deleteUser/{{ $user['id'] }}"><button type="button"
                                                 class="btn btn-sm btn-danger">Delete</button></a>
                                     </td>
                                 </tr>

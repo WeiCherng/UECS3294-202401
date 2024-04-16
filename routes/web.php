@@ -70,7 +70,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
     // EXPERIENCE
     Route::get('editempexp/{id}', [AdminController::class, 'showEditEmpExp']);
-    Route::post('editempexp/{id}', [AdminController::class, 'editEmpExperience']);
+    Route::post('editempexp/{id}', [AdminController::class, 'editEmpExperience'])->name('editEmpExp');
 
     // PROFILE
     Route::get('editempprofile/{id}', [AdminController::class, 'showEditEmpPro']);
@@ -81,6 +81,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin/addTasks', [TaskController::class, 'loadTask'])->name('loadTask');
     Route::post('/admin/tasks/assign', [TaskController::class, 'assignTask'])->name('assignTask');
     Route::post('/tasks/{id}/complete', [TaskController::class, 'markAsComplete'])->name('tasksComplete');
+
+    Route::get('/deleteUser/{id}',[AdminController::class,'destroy']);
 });
 
 // Authentication

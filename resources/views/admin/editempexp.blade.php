@@ -49,7 +49,7 @@
     echo $msg;
   }  ?> </p> -->
 
-  <form action="{{ route('updateExperience', $experience->id) }}" method="POST">
+  <form action="{{ route('editEmpExp', $experience->id) }}" method="POST">
                             @csrf
 
                             <div class="form-group mt-2">
@@ -57,6 +57,7 @@
                                 <input type="text" class="form-control @error('CompanyName') is-invalid @enderror"
                                     id="CompanyName" name="CompanyName"
                                     value="{{ old('CompanyName', $experience->CompanyName) }}" required>
+                      
                                 @error('CompanyName')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
