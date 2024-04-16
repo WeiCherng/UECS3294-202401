@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Employee;
+use App\Models\User;
 use App\Models\Education;
 use App\Models\Experience;
 
@@ -11,28 +11,25 @@ class AdminController extends Controller
 {
     //
     function editEmpProfile(Request $req){
-        $data = Employee::find($req->id);
-        $data -> EmpFname = $req -> EmpFname;
-        $data -> EmpLName = $req -> EmpLName;
-        $data -> EmpCode = $req -> EmpCode;
-        $data -> EmpDept = $req -> EmpDept;
-        $data -> EmpDesignation = $req -> EmpDesignation;
-        $data -> EmpContactNo = $req -> EmpContactNo;
-        $data -> EmpEmail = $req -> EmpEmail;
-        $data -> EmpJoingdate = $req -> EmpJoingdate;
-        $data -> EmpGender = $req -> EmpGender;
+        $data = User::find($req->id);
+        $data -> name = $req -> name;
+        $data -> email = $req -> email;
+        $data -> department = $req -> department;
+        $data -> jobTitle = $req -> jobTitle;
+        $data -> gender = $req -> gender;
+        $data -> contactNo = $req -> contactNo;
         $data -> save();
         return redirect('admin');
         
     }
 
     function showEditEmpPro($id){
-        $data = Employee::find($id);
-        return view('admin/editempprofile', ['data'=>$data]);
+        $data = User::find($id);
+        return view('admin/editempprofile', ['user'=>$data]);
     }
 
     function editEmpExperience(Request $req){
-        $data = Employee::find($req->id)->getExperience;
+        $data = User::find($req->id)->experiences;
         $data -> Employer1Name = $req -> Employer1Name;
         $data -> Employer1Designation = $req -> Employer1Designation;
         $data -> Employer1CTC = $req -> Employer1CTC;
@@ -50,39 +47,48 @@ class AdminController extends Controller
     }
 
     function showEditEmpExp($id){
-        $data = Employee::find($id)->getExperience;
+        $data = User::find($id)->experiences;
         return view('admin/editempexp', ['data'=>$data]);
     }
 
-    function editEmpEducation(Request $req) {
-        $data = Employee::find($req->id)->education;
-        $data -> CoursePG = $req -> CoursePG;
-        $data -> SchoolCollegePG = $req -> SchoolCollegePG;
-        $data -> YearPassingPG = $req -> YearPassingPG;
-        $data -> PercentagePG = $req -> PercentagePG;
-        $data -> CourseGra = $req -> CourseGra;
-        $data -> SchoolCollegeGra = $req -> SchoolCollegeGra;
-        $data -> YearPassingGra = $req -> YearPassingGra;
-        $data -> PercentageGra = $req -> PercentageGra;
-        $data -> CourseSSC = $req -> CourseSSC;
-        $data -> SchoolCollegeSSC = $req -> SchoolCollegeSSC;
-        $data -> YearPassingSSC = $req -> YearPassingSSC;
-        $data -> PercentageSSC = $req -> PercentageSSC;
-        $data -> CourseHSC = $req -> CourseHSC;
-        $data -> SchoolCollegeHSC = $req -> SchoolCollegeHSC;
-        $data -> PercentageHSC = $req -> PercentageHSC;
-        $data -> save();
-        return redirect('admin');
+    function editEmpEducation(Request $req, $id) {
+        // Validate incoming request data
+        $education = User::findOrFail($id)->education;
+        $validatedData = $req->validate([
+            'CourseProgram' => 'required|string|max:255',
+            'University' => 'nullable|string|max:255',
+            'YearGraduate' => 'nullable|string|max:4',
+            'Cgpa' => 'nullable|numeric|min:0|max:4',
+            'Achievements' => 'nullable|string|max:500',
+        ]);
+
+        // Find the education record by ID and update it
+        // $user = auth()->user();
+        $education->CourseProgram = $req->CourseProgram;
+        $education->University = $req->University;
+        $education->YearGraduate = $req->YearGraduate;
+        $education->Cgpa = $req->Cgpa;
+        $education->Achievements = $req->Achievements;
+        $education->user_id = $id->id;
+        $education->save();
+
+        // Redirect back with a success message
+        return redirect()->route('allemployees')->with('success', 'Education updated successfully.');
     }
 
     function showEditEmpEdu($id){
-        $data = Employee::find($id)->education;
-        return view('admin.editempeducation', ['data' => $data]);
+
+        $education = Education::where('user_id', $id)->get();
+
+        return view('admin.editempeducation', [
+            'data' => $education,
+            'employee_id' => $id,
+        ]);
     }
 
     function loadAllEmp() {
-        $data = Employee::paginate(10);
-        return view('admin.allemployees',['employeedetail' =>$data]);
+        $data = User::paginate(10);
+        return view('admin.allemployees',['users' =>$data]);
         // return User::all();
     }
 }

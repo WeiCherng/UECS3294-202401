@@ -62,12 +62,12 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin/employees', function () {
         return view('admin.allemployees');
     });
-    Route::get('editempeducation/{id}', [AdminController::class, 'showEditEmpEdu']);
-    Route::post('editempeducation/{id}', [AdminController::class, 'editEmpEducation']);
-    Route::get('editempexp/{id}', [AdminController::class, 'showEditEmpExp']);
-    Route::post('editempexp/{id}', [AdminController::class, 'editEmpExperience']);
-    Route::get('editempprofile/{id}', [AdminController::class, 'showEditEmpPro']);
-    Route::post('editempprofile/{id}', [AdminController::class, 'editEmpProfile']);
+    Route::get('/editempeducation/{id}', [AdminController::class, 'showEditEmpEdu']);
+    Route::post('/editempeducation/{id}', [AdminController::class, 'editEmpEducation']);
+    Route::get('/editempexp/{id}', [AdminController::class, 'showEditEmpExp']);
+    Route::post('/editempexp/{id}', [AdminController::class, 'editEmpExperience']);
+    Route::get('/editempprofile/{id}', [AdminController::class, 'showEditEmpPro']);
+    Route::post('/editempprofile/{id}', [AdminController::class, 'editEmpProfile']);
 });
 
 // Authentication
