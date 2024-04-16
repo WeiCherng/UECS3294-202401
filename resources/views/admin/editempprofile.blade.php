@@ -47,62 +47,45 @@
 
 
 
-<form class="user" method="POST" action="editEmpProfile">
+<form class="user" method="POST" action="">
   @csrf
-  @if(isset($data['ID']))
+  @if(isset($user['id']))
                <div class="row">
-               <input type="hidden" name="id" value="{{$data['ID']}}">
-                <div class="col-4 mb-3">First Name</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="FirstName" name="FirstName" aria-describedby="emailHelp" value="{{$data['EmpFname']}}"></div>
+               <input type="hidden" name="id" value="{{$user['id']}}">
+                <div class="col-4 mb-3">Employee Name</div>
+                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="name" name="name" aria-describedby="emailHelp" value="{{$user['name']}}"></div>
                     </div>  
+                
                     <div class="row">
-                      <div class="col-4 mb-3">Last Name </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="LastName" name="LastName" aria-describedby="emailHelp" value="{{$data['EmpLName']}}"></div>  
-                     </div>
-
-
-
-                    <div class="row">
-                    <div class="col-4 mb-3">Employee Code </div>
+                    <div class="col-4 mb-3">Employee Email </div>
                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="EmpCode" name="EmpCode" aria-describedby="emailHelp" value="{{$data['EmpCode']}}"></div>
+                      <input type="text" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" value="{{$user['email']}}"></div>
                     </div>
 
                     <div class="row">
-                      <div class="col-4 mb-3">Employee Dept</div>
+                      <div class="col-4 mb-3">Employee Department</div>
                      <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="EmpDept" name="EmpDept" aria-describedby="emailHelp" value="{{$data['EmpDept']}}">
+                      <input type="text" class="form-control form-control-user" id="department" name="department" aria-describedby="emailHelp" value="{{$user['department']}}">
                     </div></div>
-                    <div class="row">
-                    <div class="col-4 mb-3">Employee Desigantion</div>
 
+                    <div class="row">
+                    <div class="col-4 mb-3">Job Title</div>
                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="EmpDesignation" name="EmpDesignation" aria-describedby="emailHelp" value="{{$data['EmpDesignation']}}">
+                      <input type="text" class="form-control form-control-user" id="jobTitle" name="jobTitle" aria-describedby="emailHelp" value="{{$user['jobTitle']}}">
                     </div></div>
+
                     <div class="row">
-                      <div class="col-4 mb-3">Employee Contact No.</div>
+                    <div class="col-4 mb-3">ContactNo</div>
                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="EmpContactNo" name="EmpContactNo" aria-describedby="emailHelp" value="{{$data['EmpContactNo']}}">
+                      <input type="text" class="form-control form-control-user" id="contactNo" name="contactNo" aria-describedby="emailHelp" value="{{$user['contactNo']}}">
                     </div></div>
+
                     <div class="row">
-                    <div class="col-4 mb-3">Email</div>
-                   <div class="col-8 mb-3">
-                      <input type="email" class="form-control form-control-user" id="Email" name="Email" aria-describedby="emailHelp" placeholder="Enter Email Address..." value="{{$data['EmpEmail']}}" readonly="true">
-                    </div></div>
-                
-                    <div class="row">
-                      <div class="col-4 mb-3">Employee Joing Date(yyyy-mm-dd)</div>
-                    <div class="col-8  mb-3">
-                      <input type="text" class="form-control form-control-user" value="{{$data['EmpJoingdate']}}" id="jDate" name="EmpJoingdate" aria-describedby="emailHelp">
-                    </div></div>
-                    <div class="row">
-                      <div class="col-4 mb-3">Gender</div>
-                    <div class="col-4 mb-3">
-                    
-                      @if($data['EmpGender']=='Male')
+                    <div class="col-4 mb-3">Gender</div>
+                    <div class="col-4 mb-3">  
+                      @if($user['gender']=='Male')
                       <input type="radio" id="gender" name="gender" value="Male" checked="true">Male
-
-                     <input type="radio" name="gender" value="Female">Female
+                      <input type="radio" name="gender" value="Female">Female
                  @else
  <input type="radio" id="gender" name="gender" value="Male" >Male
   <input type="radio" name="gender" value="Female" checked="true">Female

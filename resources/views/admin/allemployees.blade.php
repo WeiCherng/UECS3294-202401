@@ -56,32 +56,32 @@
                                 <th>Employee ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Department</th>
                                 <th>Job Title</th>
                                 <th>Gender</th>
-                                <th>Contact no</th>
-                                <th>Action</th>
+                                <th>Contact No</th>
                             </tr>
                             @php
-                            $cnt = 0;
                             @endphp
-                            @foreach($employeedetail as $user)
+                            @foreach($users as $user)
                             <tr>
-                                <td>{{ ++$cnt }}</td>
+                                <td>{{$user['id']}}</td>
                                 <td>{{$user['name']}}</td>
                                 <td>{{$user['email']}}</td>
-                                <td>{{$user['job title']}}</td>
+                                <td>{{$user['department']}}</td>
+                                <td>{{$user['jobTitle']}}</td>
                                 <td>{{$user['gender']}}</td>
                                 <td>{{$user['contactNo']}}</td>
-                                <td><a href="editempprofile/{{$user['ID']}}"><button class="btn btn-outline-primary" type="button">Edit Profile Details</button></a> 
-                                    <a href="editempeducation/{{$user['ID']}}"><button class="btn btn-outline-primary" type="button">Edit Education
+                                <td><a href="editempprofile/{{$user['id']}}"><button class="btn btn-sm btn-warning text-white" type="button">Edit Profile Details</button></a> 
+                                    <a href="editempeducation/{{$user['id']}}"><button class="btn btn-sm btn-success" type="button">Edit Education
                                         Details</button></a> 
-                                    <a href="editempexp/{{$user['ID']}}"><button class="btn btn-outline-primary" type="button">Edit Experience Details</button></a>
-                                    <a href="editempexp/{{$user['ID']}}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+                                    <a href="editempexp/{{$user['id']}}"><button class="btn btn-sm btn-info text-white" type="button">Edit Experience Details</button></a>
+                                    <a href="editempexp/{{$user['id']}}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
                                 </td>
                             </tr>
                             @endforeach
                         </table>
-                        <span>{{$employeedetail->links()}}</span>
+                        <span>{{$users->links()}}</span>
                     </div>
 
 

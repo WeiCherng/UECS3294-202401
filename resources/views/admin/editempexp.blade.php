@@ -49,93 +49,52 @@
     echo $msg;
   }  ?> </p> -->
 
-<form class="user" method="post" action="editEmpExperience">
-    @csrf
-  <!-- ?php
- $aid=$_GET['editid'];
-$ret=mysqli_query($con,"select * from empexpireince where ID='$aid'");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
+  <form action="{{ route('updateExperience', $experience->id) }}" method="POST">
+                            @csrf
 
-?> -->
-@if(isset($data['ID']))
-               <div class="row">
-                <div class="col-4 mb-3">Employer1 Name</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="emp1name" name="emp1name" aria-describedby="emailHelp" value="{{$data['Employer1Name']}}"></div>
-                    </div>  
-                    <div class="row">
-                      <div class="col-4 mb-3">Employer1 Designation </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="emp1des" name="emp1des" aria-describedby="emailHelp" value="{{$data['Employer1Designation']}}"></div>  
-                     </div>
+                            <div class="form-group mt-2">
+                                <label for="CompanyName">Company Name</label>
+                                <input type="text" class="form-control @error('CompanyName') is-invalid @enderror"
+                                    id="CompanyName" name="CompanyName"
+                                    value="{{ old('CompanyName', $experience->CompanyName) }}" required>
+                                @error('CompanyName')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
+                            <div class="form-group mt-2">
+                                <label for="RoleDesignation">Role/Designation</label>
+                                <input type="text"
+                                    class="form-control @error('RoleDesignation') is-invalid @enderror"
+                                    id="RoleDesignation" name="RoleDesignation"
+                                    value="{{ old('RoleDesignation', $experience->RoleDesignation) }}" required>
+                                @error('RoleDesignation')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
+                            <div class="form-group mt-2">
+                                <label for="Salary">Salary</label>
+                                <input type="number" step="0.01"
+                                    class="form-control @error('Salary') is-invalid @enderror" id="Salary"
+                                    name="Salary" value="{{ old('Salary', $experience->Salary) }}" required>
+                                @error('Salary')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                    <div class="row">
-                    <div class="col-4 mb-3">Employer1 CTC </div>
-                    <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="emp1ctc" name="emp1ctc" aria-describedby="emailHelp" value="{{$data['Employer1CTC']}}"></div>
-                    </div>
+                            <div class="form-group mt-2">
+                                <label for="WorkDuration">Work Duration</label>
+                                <input type="text" class="form-control @error('WorkDuration') is-invalid @enderror"
+                                    id="WorkDuration" name="WorkDuration"
+                                    value="{{ old('WorkDuration', $experience->WorkDuration) }}" required>
+                                @error('WorkDuration')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                    <div class="row">
-                      <div class="col-4 mb-3">Employer1 WorkDuration</div>
-                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="emp1workduration" name="emp1workduration" aria-describedby="emailHelp" value="{{$data['Employer1WorkDuration']}}">
-                    </div></div>
-                    <div class="row">
-                <div class="col-4 mb-3">Employer2 Name</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="emp2name" name="emp2name" aria-describedby="emailHelp" value="{{$data['Employer2Name']}}"></div>
-                    </div>  
-                    <div class="row">
-                      <div class="col-4 mb-3">Employer2 Designation </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="emp2des" name="emp2des" aria-describedby="emailHelp" value="{{$data['Employer2Designation']}}"></div>  
-                     </div>
-
-
-
-                    <div class="row">
-                    <div class="col-4 mb-3">Employer2 CTC </div>
-                    <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="emp2ctc" name="emp2ctc" aria-describedby="emailHelp" value="{{$data['Employer2CTC']}}"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-4 mb-3">Employer2 WorkDuration</div>
-                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="emp2workduration" name="emp2workduration" aria-describedby="emailHelp" value="{{$data['Employer1WorkDuration']}}">
-                    </div></div>
-                    <div class="row">
-                <div class="col-4 mb-3">Employer3 Name</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="emp3name" name="emp3name" aria-describedby="emailHelp" value="{{$data['Employer3Name']}}"></div>
-                    </div>  
-                    <div class="row">
-                      <div class="col-4 mb-3">Employer3 Designation </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="emp3des" name="emp3des" aria-describedby="emailHelp" value="{{$data['Employer3Designation']}}"></div>  
-                     </div>
-
-
-
-                    <div class="row">
-                    <div class="col-4 mb-3">Employer3 CTC </div>
-                    <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="emp3ctc" name="emp3ctc" aria-describedby="emailHelp" value="{{$data['Employer3CTC']}}"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-4 mb-3">Employer3 WorkDuration</div>
-                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="emp3workduration" name="emp3workduration" aria-describedby="emailHelp" value="{{$data['Employer3WorkDuration']}}">
-                    </div></div>
-<!-- ?php  ? -->
-                    <div class="row" style="margin-top:4%">
-                      <div class="col-4"></div>
-                      <div class="col-4">
-                      <input type="submit" name="submit"  value="Update" class="btn btn-primary btn-user btn-block">
-                    </div>
-                    </div>
-                    @else
-<p>No data available for editing</p>
-@endif
-                  </form>
+                            <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                        </form>
 
 
 
