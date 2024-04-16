@@ -9,30 +9,76 @@ class ExperienceController extends Controller
 {
     public function displayExperience(Experience $userId)
     {
-        $experience = Experience::where('EmpID', $userId)->first();
-        return view('showExperience', compact('experience'));
+        $user = auth()->user();
+
+        $experienceRecords = $user->experiences()->get();
+
+        return view('myexp', ['experienceRecords' => $experienceRecords]);
     }
-    
+
     public function addExperience(Request $request)
     {
         $validatedData = $request->validate([
-            'EmpID' => 'required',
-            'Employer1Name' => 'nullable|string',
-            'Employer1Designation' => 'nullable|string',
-            'Employer1CTC' => 'nullable|numeric',
-            'Employer1WorkDuration' => 'nullable|string',
-            'Employer2Name' => 'nullable|string',
-            'Employer2Designation' => 'nullable|string',
-            'Employer2CTC' => 'nullable|numeric',
-            'Employer2WorkDuration' => 'nullable|string',
-            'Employer3Name' => 'nullable|string',
-            'Employer3Designation' => 'nullable|string',
-            'Employer3CTC' => 'nullable|numeric',
-            'Employer3WorkDuration' => 'nullable|string',
+            'CompanyName' => 'required|string|max:255',
+            'RoleDesignation' => 'required|string|max:255',
+            'Salary' => 'required|numeric|min:0',
+            'WorkDuration' => 'required|string|max:255',
         ]);
-        Experience::create($validatedData);
-        return redirect()->back()->with('success', 'Experience added successfully.');
+
+        $user = auth()->user();
+
+        $exp = new Experience;
+        $exp->CompanyName = $request->CompanyName;
+        $exp->RoleDesignation = $request->RoleDesignation;
+        $exp->Salary = $request->Salary;
+        $exp->WorkDuration = $request->WorkDuration;
+        $exp->user_id = $user->id;
+        $exp->save();
+
+        return redirect()->route('myexp')->with('success', 'Experience added successfully.');
     }
 
-    
+
+    public function viewEditExperience($id)
+    {
+        // Find the education record by ID
+        $experience = Experience::findOrFail($id);
+
+        // Return the edit view with the education record
+        return view('/editmyexp', ['experience' => $experience]);
+    }
+
+    public function updateExperience(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'CompanyName' => 'required|string|max:255',
+            'RoleDesignation' => 'required|string|max:255',
+            'Salary' => 'required|numeric|min:0',
+            'WorkDuration' => 'required|string|max:255',
+        ]);
+
+        $user = auth()->user();
+
+        $exp = Experience::findOrFail($id);
+        $exp->CompanyName = $request->CompanyName;
+        $exp->RoleDesignation = $request->RoleDesignation;
+        $exp->Salary = $request->Salary;
+        $exp->WorkDuration = $request->WorkDuration;
+        $exp->user_id = $user->id;
+        $exp->save();
+
+        return redirect()->route('myexp')->with('success', 'Experience added successfully.');
+    }
+
+
+    public function destroy($id)
+    {
+        // Find the education record by ID and delete it
+        $exp = Experience::findOrFail($id);
+        $exp->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('myexp')->with('success', 'Experience deleted successfully.');
+    }
+
 }

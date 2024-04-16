@@ -4,6 +4,9 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\Experience;
+use App\Models\Education;
+use App\Models\User;
 
 class UserFactory extends Factory
 {
@@ -34,6 +37,14 @@ class UserFactory extends Factory
             return [
                 'email_verified_at' => null,
             ];
+        });
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (User $user) {
+            Experience::factory()->count(3)->create(['user_id' => $user->id]);
+            Education::factory()->count(1)->create(['user_id' => $user->id]);
         });
     }
 }

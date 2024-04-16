@@ -8,26 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Education extends Model
 {
     use HasFactory;
-    public $table="empeducation";
+    // public $table="empeducation";
 
     protected $fillable = [
-        'EmpID',
-        'CoursePG',
-        'SchoolCollegePG',
-        'YearPassingPG',
-        'PercentagePG', 
-        'CourseGra',
-        'SchoolCollegeGra',
-        'YearPassingGra',
-        'PercentageGra',
-        'CourseSSC',
-        'SchoolCollegeSSC',
-        'YearPassingSSC',
-        'PercentageSCC',
-        'CourseHSC',
-        'SchoolCollegeHSC',
-        'YearPassingHSC',
-        'PercentageHSC',
+        'CourseProgram',
+        'Univeristy',
+        'YearGraudate',
+        'Cgpa',
+        'Achivements',
     ];
 
     public function employee(){

@@ -47,164 +47,80 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Edit My Education</h1>
-                                      {{-- 
-                        <p style="font-size:16px; color:red" align="center"> <?php if ($msg) {
-                            echo $msg;
-                        } ?> </p> --}}
+                    <div class="container">
+                        <h2>Edit Education</h2>
 
-                    <form class="user" method="post" action="">
+                        <form action="{{ route('editmyeducation', $education->id) }}" method="POST">
+                            @csrf
+                            @method('POST')
 
-                        {{-- <div class="row">
-                            <div class="col-4 mb-3">Course Post Graduation</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="coursepg" name="coursepg" aria-describedby="emailHelp"
-                                    value="<?php echo $row['CoursePG']; ?>"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">School/College Post Graduation </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="schoolclgpg" name="schoolclgpg" aria-describedby="emailHelp"
-                                    value="<?php echo $row['SchoolCollegePG']; ?>"></div>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Year of Passing Post Graduation </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="yoppg"
-                                    name="yoppg" aria-describedby="emailHelp" value="<?php echo $row['YearPassingPG']; ?>">
+                            <div class="form-group mt-2">
+                                <label for="CourseProgram">Course Program</label>
+                                <input type="text" class="form-control @error('CourseProgram') is-invalid @enderror"
+                                    id="CourseProgram" name="CourseProgram"
+                                    value="{{ old('CourseProgram', $education->CourseProgram) }}" required>
+                                @error('CourseProgram')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-4 mb-3">Percentage in PG</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="pipg"
-                                    name="pipg" aria-describedby="emailHelp" value="<?php echo $row['PercentagePG']; ?>">
+                            <div class="form-group mt-2">
+                                <label for="University">University Graduated</label>
+                                <input type="text" class="form-control @error('University') is-invalid @enderror"
+                                    id="University" name="University"
+                                    value="{{ old('University', $education->University) }}">
+                                @error('University')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Course Graduation</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="coursegra" name="coursegra" aria-describedby="emailHelp" required="true"
-                                    value="<?php echo $row['CourseGra']; ?>"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">School/College Graduation </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="schoolclggra" name="schoolclggra" aria-describedby="emailHelp" required="true"
-                                    value="<?php echo $row['SchoolCollegeGra']; ?>"></div>
-                        </div>
 
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Year of Passing Graduation </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="yopgra"
-                                    name="yopgra" aria-describedby="emailHelp" required="true"
-                                    value="<?php echo $row['YearPassingGra']; ?>">
+                            <div class="form-group mt-2">
+                                <label for="YearGraduate">Year Graduated</label>
+                                <input type="text" class="form-control @error('YearGraduate') is-invalid @enderror"
+                                    id="YearGraduate" name="YearGraduate"
+                                    value="{{ old('YearGraduate', $education->YearGraduate) }}">
+                                @error('YearGraduate')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-4 mb-3">Percentage in Graduation</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="pigra"
-                                    name="pigra" aria-describedby="emailHelp" required="true"
-                                    value="<?php echo $row['PercentageGra']; ?>">
+                            <div class="form-group mt-2">
+                                <label for="Cgpa">Results (CGPA)</label>
+                                <input type="number" step="0.01"
+                                    class="form-control @error('Cgpa') is-invalid @enderror" id="Cgpa"
+                                    name="Cgpa" value="{{ old('Cgpa', $education->Cgpa) }}">
+                                @error('Cgpa')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Course SSC</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="coursessc" name="coursessc" aria-describedby="emailHelp" required="true"
-                                    value="<?php echo $row['CourseSSC']; ?>"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">School/College SSC </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="schoolclgssc" name="schoolclgssc" aria-describedby="emailHelp"
-                                    required="true" value="<?php echo $row['SchoolCollegeSSC']; ?>"></div>
-                        </div>
 
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Year of Passing SSC </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="yopssc"
-                                    name="yopssc" aria-describedby="emailHelp" required="true"
-                                    value="<?php echo $row['YearPassingSSC']; ?>">
+                            <div class="form-group mt-2">
+                                <label for="Achievements">Achievements</label>
+                                <input type="text" class="form-control @error('Achievements') is-invalid @enderror"
+                                    id="Achievements" name="Achievements"
+                                    value="{{ old('Achievements', $education->Achievements) }}">
+                                @error('Achievements')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-4 mb-3">Percentage in SSC</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="pissc"
-                                    name="pissc" aria-describedby="emailHelp" required="true"
-                                    value="<?php echo $row['PercentageSSC']; ?>">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Course HSC</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="coursehsc" name="coursehsc" aria-describedby="emailHelp" required="true"
-                                    value="<?php echo $row['CourseHSC']; ?>"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">School/College HSC </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="schoolclghsc" name="schoolclghsc" aria-describedby="emailHelp"
-                                    required="true" value="<?php echo $row['SchoolCollegeHSC']; ?>"></div>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Year of Passing HSC </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="yophsc"
-                                    name="yophsc" aria-describedby="emailHelp" required="true"
-                                    value="<?php echo $row['YearPassingHSC']; ?>">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Percentage in HSC</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="pihsc"
-                                    name="pihsc" aria-describedby="emailHelp" required="true"
-                                    value="<?php echo $row['PercentageHSC']; ?>">
-                            </div> --}}
-                {{-- </div> --}}
-
-                <div class="row" style="margin-top:4%">
-                    <div class="col-4"></div>
-                    <div class="col-4">
-                        <input type="submit" name="submit" value="update" class="btn btn-primary btn-user btn-block">
+                            <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                        </form>
                     </div>
-                </div>
 
-                </form>
+                </div>
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- /.container-fluid -->
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            @include('layouts.footer')
+
+            <!-- End of Footer -->
 
         </div>
-        <!-- End of Main Content -->
-
-        <!-- Footer -->
-        @include('layouts.footer')
-
-        <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
