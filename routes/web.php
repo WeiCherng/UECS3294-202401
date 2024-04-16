@@ -7,6 +7,7 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/welcome', function () {
         return view('welcome');
     })->name('welcome');
+    Route::get('/welcome', [TaskController::class, 'empDashboard'])->name('empDashboard');
 
     //EDUCATION
     Route::get('/myeducation', [EducationController::class, 'displayEducation'])->name('myeducation');
@@ -50,14 +52,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/editmyexp/{id}', [ExperienceController::class, 'updateExperience'])->name('updateExperience');
 
     Route::delete('/expDestroy/{id}', [ExperienceController::class, 'destroy'])->name('expDestroy');
+
+    // Tasks
+    Route::get('/tasks', [TaskController::class, 'viewMyTasks'])->name('myTask');
+    Route::post('/tasks/{id}/in-progress', [TaskController::class, 'markAsInProgress'])->name('markMyTaskIP');
+    Route::post('/tasks/{id}/completed', [TaskController::class, 'markAsCompleted'])->name('markMyTaskComplete');
 });
 
 // ADMIN
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin', [AdminController::class, 'loadAllEmp']);
-    Route::get('/admin/welcome', function () {
-        return view('admin.welcome');
-    });
+
+    Route::get('/admin/welcome', [TaskController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/admin/employees', function () {
         return view('admin.allemployees');
@@ -68,6 +74,12 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::post('editempexp/{id}', [AdminController::class, 'editEmpExperience']);
     Route::get('editempprofile/{id}', [AdminController::class, 'showEditEmpPro']);
     Route::post('editempprofile/{id}', [AdminController::class, 'editEmpProfile']);
+
+    // Tasks
+    Route::get('/admin/tasks', [TaskController::class, 'viewAllTasks']);
+    Route::get('/admin/addTasks', [TaskController::class, 'loadTask'])->name('loadTask');
+    Route::post('/admin/tasks/assign', [TaskController::class, 'assignTask'])->name('assignTask');
+    Route::post('/tasks/{id}/complete', [TaskController::class, 'markAsComplete'])->name('tasksComplete');
 });
 
 // Authentication
