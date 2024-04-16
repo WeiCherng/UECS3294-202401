@@ -61,22 +61,23 @@ Route::group(['middleware' => 'auth'], function () {
 
 // ADMIN
 Route::group(['middleware' => 'auth:admin'], function () {
-    Route::get('/admin', [AdminController::class, 'loadAllEmp']);
-
+    Route::get('/admin', [AdminController::class, 'loadAllEmp'])->name('allemp');
     Route::get('/admin/welcome', [TaskController::class, 'dashboard'])->name('dashboard');
 
-    Route::get('/admin/employees', function () {
-        return view('admin.allemployees');
-    });
+    // EDUCATION
     Route::get('editempeducation/{id}', [AdminController::class, 'showEditEmpEdu']);
-    Route::post('editempeducation/{id}', [AdminController::class, 'editEmpEducation']);
+    Route::post('editempeducation/{id}', [AdminController::class, 'editEmpEducation'])->name('editEmpEdu');
+
+    // EXPERIENCE
     Route::get('editempexp/{id}', [AdminController::class, 'showEditEmpExp']);
     Route::post('editempexp/{id}', [AdminController::class, 'editEmpExperience']);
+
+    // PROFILE
     Route::get('editempprofile/{id}', [AdminController::class, 'showEditEmpPro']);
     Route::post('editempprofile/{id}', [AdminController::class, 'editEmpProfile']);
 
     // Tasks
-    Route::get('/admin/tasks', [TaskController::class, 'viewAllTasks']);
+    Route::get('/admin/tasks', [TaskController::class, 'viewAllTasks'])->name('viewAllTasks');
     Route::get('/admin/addTasks', [TaskController::class, 'loadTask'])->name('loadTask');
     Route::post('/admin/tasks/assign', [TaskController::class, 'assignTask'])->name('assignTask');
     Route::post('/tasks/{id}/complete', [TaskController::class, 'markAsComplete'])->name('tasksComplete');
