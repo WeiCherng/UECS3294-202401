@@ -47,137 +47,56 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Edit My Expirence</h1>
+                    <div class="container">
+                        <h2>Edit Experience</h2>
 
-                    {{-- <p style="font-size:16px; color:red" align="center"> <?php if ($msg) {
-                        echo $msg;
-                    } ?> </p> --}}
+                        <form action="{{ route('updateExperience', $experience->id) }}" method="POST">
+                            @csrf
 
-                    <form class="user" method="post" action="">
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer1 Name</div>
-                            <div class="col-8 mb-3"> 
-                              <input type="text" class="form-control form-control-user"
-                                    id="emp1name" name="emp1name" aria-describedby="emailHelp"
-                                    {{-- value="<?php echo $row['Employer1Name']; ?>" --}}
-                                    >
-                                  </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer1 Designation </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="emp1des" name="emp1des" aria-describedby="emailHelp"
-                                    {{-- value="<?php echo $row['Employer1Designation']; ?>" --}}
-                                    >
-                                  </div>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer1 CTC </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp1ctc"
-                                    name="emp1ctc" aria-describedby="emailHelp" 
-                                    {{-- value="<?php echo $row['Employer1CTC']; ?>" --}}
-                                    >
+                            <div class="form-group mt-2">
+                                <label for="CompanyName">Company Name</label>
+                                <input type="text" class="form-control @error('CompanyName') is-invalid @enderror"
+                                    id="CompanyName" name="CompanyName"
+                                    value="{{ old('CompanyName', $experience->CompanyName) }}" required>
+                                @error('CompanyName')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer1 WorkDuration</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp1workduration"
-                                    name="emp1workduration" aria-describedby="emailHelp" 
-                                    {{-- value="<?php echo $row['Employer1WorkDuration']; ?>" --}}
-                                    >
+                            <div class="form-group mt-2">
+                                <label for="RoleDesignation">Role/Designation</label>
+                                <input type="text"
+                                    class="form-control @error('RoleDesignation') is-invalid @enderror"
+                                    id="RoleDesignation" name="RoleDesignation"
+                                    value="{{ old('RoleDesignation', $experience->RoleDesignation) }}" required>
+                                @error('RoleDesignation')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer2 Name</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="emp2name" name="emp2name" aria-describedby="emailHelp"
-                                    {{-- value="<?php echo $row['Employer2Name']; ?>" --}}
-                                    
-                                    ></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer2 Designation </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="emp2des" name="emp2des" aria-describedby="emailHelp"
-                                    {{-- value="<?php echo $row['Employer2Designation']; ?>" --}}
-                                    
-                                    ></div>
-                        </div>
 
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer2 CTC </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp2ctc"
-                                    name="emp2ctc" aria-describedby="emailHelp" 
-                                    {{-- value="<?php echo $row['Employer2CTC']; ?>" --}}
-                                    >
+                            <div class="form-group mt-2">
+                                <label for="Salary">Salary</label>
+                                <input type="number" step="0.01"
+                                    class="form-control @error('Salary') is-invalid @enderror" id="Salary"
+                                    name="Salary" value="{{ old('Salary', $experience->Salary) }}" required>
+                                @error('Salary')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer2 WorkDuration</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp2workduration"
-                                    name="emp2workduration" aria-describedby="emailHelp" 
-                                    {{-- value="<?php echo $row['Employer2WorkDuration']; ?>" --}}
-                                    >
+                            <div class="form-group mt-2">
+                                <label for="WorkDuration">Work Duration</label>
+                                <input type="text" class="form-control @error('WorkDuration') is-invalid @enderror"
+                                    id="WorkDuration" name="WorkDuration"
+                                    value="{{ old('WorkDuration', $experience->WorkDuration) }}" required>
+                                @error('WorkDuration')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer3 Name</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="emp3name" name="emp3name" aria-describedby="emailHelp"
-                                    {{-- value="<?php echo $row['Employer3Name']; ?>" --}}
-                                    ></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer3 Designation </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="emp3des" name="emp3des" aria-describedby="emailHelp"
-                                    {{-- value="<?php echo $row['Employer3Designation']; ?>" --}}
-                                    ></div>
-                        </div>
 
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer3 CTC </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp3ctc"
-                                    name="emp3ctc" aria-describedby="emailHelp" 
-                                    {{-- value="<?php echo $row['Employer3CTC']; ?>" --}}
-                                    >
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer3 WorkDuration</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp3workduration"
-                                    name="emp3workduration" aria-describedby="emailHelp"
-                                    {{-- value="<?php echo $row['Employer3WorkDuration']; ?>" --}}
-                                    >
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top:4%">
-                            <div class="col-4"></div>
-                            <div class="col-4">
-                                <input type="submit" name="submit" value="Update"
-                                    class="btn btn-primary btn-user btn-block">
-                            </div>
-                        </div>
-
-                    </form>
-
+                            <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                        </form>
+                    </div>
 
 
 

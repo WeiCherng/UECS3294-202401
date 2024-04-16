@@ -63,6 +63,15 @@
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Welcome Back to ERMS !</div>
 
+                                            @can('isAdmin')
+                                                <div class="btn btn-success btn-lg">
+                                                    You have Admin Access
+                                                </div>
+                                            @else
+                                                <div class="btn btn-info btn-lg">
+                                                    You have User Access
+                                                </div>
+                                            @endcan
 
                                             {{-- <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $fname . ' ' . $lname; ?> --}}
                                         </div>

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,58 +23,62 @@ Route::get('/', function () {
     return view('index');
 });
 
-
 // USER
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/welcome', function () {
+        return view('welcome');
+    })->name('welcome');
 
-Route::get('/myexp', function () {
-    return view('myexp');
-});
+    //EDUCATION
+    Route::get('/myeducation', [EducationController::class, 'displayEducation'])->name('myeducation');
 
-Route::get('/editmyexp', function () {
-    return view('editmyexp');
-});
+    Route::view('addEducation', 'addEducation');
+    Route::post('/addEducation', [EducationController::class, 'addEducation']);
 
-Route::get('/myeducation', function () {
-    return view('myeducation');
-});
+    Route::get('/editmyeducation/{id}', [EducationController::class, 'viewEditEducation'])->name('editmyeducation');
+    Route::post('/editmyeducation/{id}', [EducationController::class, 'updateEducation'])->name('updateEducation');
 
-Route::get('/editmyeducation', function () {
-    return view('editmyeducation');
+    Route::delete('/educationDestroy/{id}', [EducationController::class, 'destroy'])->name('educationDestroy');
+
+    //EXPERIENCE
+    Route::get('/myexp', [ExperienceController::class, 'displayExperience'])->name('myexp');
+
+    Route::view('addExperience', 'addExperience');
+    Route::post('/addExperience', [ExperienceController::class, 'addExperience']);
+
+    Route::get('/editmyexp/{id}', [ExperienceController::class, 'viewEditExperience'])->name('editmyexperience');
+    Route::post('/editmyexp/{id}', [ExperienceController::class, 'updateExperience'])->name('updateExperience');
+
+    Route::delete('/expDestroy/{id}', [ExperienceController::class, 'destroy'])->name('expDestroy');
 });
 
 // ADMIN
-Route::get('/admin/welcome', function () {
-    return view('admin.welcome');
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::get('/admin', [AdminController::class, 'loadAllEmp']);
+    Route::get('/admin/welcome', function () {
+        return view('admin.welcome');
+    });
+
+    Route::get('/admin/employees', function () {
+        return view('admin.allemployees');
+    });
+    Route::get('editempeducation/{id}', [AdminController::class, 'showEditEmpEdu']);
+    Route::post('editempeducation/{id}', [AdminController::class, 'editEmpEducation']);
+    Route::get('editempexp/{id}', [AdminController::class, 'showEditEmpExp']);
+    Route::post('editempexp/{id}', [AdminController::class, 'editEmpExperience']);
+    Route::get('editempprofile/{id}', [AdminController::class, 'showEditEmpPro']);
+    Route::post('editempprofile/{id}', [AdminController::class, 'editEmpProfile']);
 });
 
-Route::get('/admin/employees', function () {
-    return view('admin.allemployees');
-});
-
-//EXPERIENCE
-Route::get('/showExperience', function(){ return view('showExperience'); });
-Route::get('/addExperience', function(){ return view('addExperience'); });
-Route::post('/addExperience', [ExperienceController::class, 'addExperience']);
-Route::get('/experience/{userId}/displayExperience', [ExperienceController::class, 'displayExperience'])->name('displayExperience');
-
-//EDUCATION
-Route::get('/showEducation', function(){ return view('showEducation'); });
-Route::get('/addEducation', function (){ return view('addEducation'); });
-Route::post('/addEducation', [EducationController::class, 'addEducation']);
-Route::get('/education/{userId}/displayEducation', [EducationController::class, 'displayEducation'])->name('displayEducation');
-
+// Authentication
+Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
+Route::get('/register/admin', [RegisterController::class, 'showAdminRegisterForm']);
+Route::post('/login/admin', [LoginController::class, 'adminLogin']);
+Route::post('/register/admin', [RegisterController::class, 'createAdmin']);
+Route::get('logout', [LoginController::class, 'logout']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/admin',[AdminController::class,'loadAllEmp']);
-Route::get('editempeducation/{id}',[AdminController::class,'showEditEmpEdu']);
-Route::post('editempeducation/{id}',[AdminController::class,'editEmpEducation']);
-Route::get('editempexp/{id}',[AdminController::class,'showEditEmpExp']);
-Route::post('editempexp/{id}',[AdminController::class,'editEmpExperience']);
-Route::get('editempprofile/{id}',[AdminController::class,'showEditEmpPro']);
-Route::post('editempprofile/{id}',[AdminController::class,'editEmpProfile']);
+

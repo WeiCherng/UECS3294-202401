@@ -46,215 +46,55 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">My Education</h1>
-
-                    {{-- <p style="font-size:16px; color:red" align="center">Your Education details already added. Now you
-                        can only edit the record. </p> --}}
-
-                    {{-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                        <tr>
-                            <th>Post Graduate Course Name</th>
-                            <td><?php echo $row['CoursePG']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Post Graduate School/College</th>
-                            <td><?php echo $row['SchoolCollegePG']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Year of Passing in PG</th>
-                            <td><?php echo $row['YearPassingPG']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Percent in PG</th>
-                            <td><?php echo $row['PercentagePG']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Graduation Course Name</th>
-                            <td><?php echo $row['CourseGra']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Graduate School/College</th>
-                            <td><?php echo $row['SchoolCollegeGra']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Year of Passing in Graduation</th>
-                            <td><?php echo $row['YearPassingGra']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Percent in Graduation</th>
-                            <td><?php echo $row['PercentageGra']; ?></td>
-                        </tr>
-                        <th>SSC Course Name</th>
-                        <td><?php echo $row['CourseSSC']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>SSC School/College</th>
-                            <td><?php echo $row['SchoolCollegeSSC']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Year of Passing in SSC</th>
-                            <td><?php echo $row['YearPassingSSC']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Percent in SSC</th>
-                            <td><?php echo $row['PercentageSSC']; ?></td>
-                        </tr>
-                        <th>HSC Course Name</th>
-                        <td><?php echo $row['CourseHSC']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>HSC School/College</th>
-                            <td><?php echo $row['SchoolCollegeHSC']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Year of Passing in HSC</th>
-                            <td><?php echo $row['YearPassingHSC']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>Percent in HSC</th>
-                            <td><?php echo $row['PercentageHSC']; ?></td>
-                        </tr>
-
-
-                    </table> --}}
-
-                    <form class="user" method="post" action="">
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Course Post Graduation</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="coursepg" name="coursepg" aria-describedby="emailHelp" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">School/College Post Graduation </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="schoolclgpg" name="schoolclgpg" aria-describedby="emailHelp" value="">
+                    <div class="container">
+                        @if (session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
-                        </div>
+                        @endif
 
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Year of Passing Post Graduation </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="yoppg"
-                                    name="yoppg" aria-describedby="emailHelp" value="">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Percentage in PG</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="pipg"
-                                    name="pipg" aria-describedby="emailHelp" value="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Course Graduation</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="coursegra" name="coursegra" aria-describedby="emailHelp" value=""
-                                    required="true"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">School/College Graduation </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="schoolclggra" name="schoolclggra" aria-describedby="emailHelp" value=""
-                                    required="true"></div>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Year of Passing Graduation </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="yopgra"
-                                    name="yopgra" aria-describedby="emailHelp" value="" required="true">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Percentage in Graduation</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="pigra"
-                                    name="pigra" aria-describedby="emailHelp" value="" required="true">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Course SSC</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="coursessc" name="coursessc" aria-describedby="emailHelp" value=""
-                                    required="true"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">School/College SSC </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="schoolclgssc" name="schoolclgssc" aria-describedby="emailHelp"
-                                    value="" required="true"></div>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Year of Passing SSC </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="yopssc"
-                                    name="yopssc" aria-describedby="emailHelp" value="" required="true">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Percentage in SSC</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="pissc"
-                                    name="pissc" aria-describedby="emailHelp" value="" required="true">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Course HSC</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="coursehsc" name="coursehsc" aria-describedby="emailHelp" value=""
-                                    required="true"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">School/College HSC </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="schoolclghsc" name="schoolclghsc" aria-describedby="emailHelp"
-                                    value="" required="true"></div>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Year of Passing HSC </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="yophsc"
-                                    name="yophsc" aria-describedby="emailHelp" value="" required="true">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Percentage in HSC</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="pihsc"
-                                    name="pihsc" aria-describedby="emailHelp" value="" required="true">
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin-top:4%">
-                            <div class="col-4"></div>
-                            <div class="col-4">
-                                <input type="submit" name="submit" value="submit"
-                                    class="btn btn-primary btn-user btn-block">
-                            </div>
-                        </div>
-
-                    </form>
-
-
-
-
+                        <h2>Your Education</h2>
+                        <a href="/addEducation" class="btn btn-sm btn-primary my-4">Add Education</a>
+                        @if ($educationRecords->isEmpty())
+                            <p>You have no education records.</p>
+                        @else
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Course Program</th>
+                                        <th scope="col">University</th>
+                                        <th scope="col">Year Graduated</th>
+                                        <th scope="col">CGPA</th>
+                                        <th scope="col">Achievements</th>
+                                        <th scope="col">Actions</th> <!-- New column for actions -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($educationRecords as $record)
+                                        <tr>
+                                            <td>{{ $record->CourseProgram }}</td>
+                                            <td>{{ $record->University ?? 'N/A' }}</td>
+                                            <td>{{ $record->YearGraduate ?? 'N/A' }}</td>
+                                            <td>{{ $record->Cgpa ?? 'N/A' }}</td>
+                                            <td>{{ $record->Achievements ?? 'N/A' }}</td>
+                                            <td>
+                                                <a href="{{ route('editmyeducation', $record->id) }}"
+                                                    class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('educationDestroy', $record->id) }}"
+                                                    method="POST" style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 

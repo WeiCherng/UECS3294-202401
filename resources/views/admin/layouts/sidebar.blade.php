@@ -33,7 +33,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-          <a class="nav-link" href="employees">
+          <a class="nav-link" href="/admin">
               <i class="fas fa-fw fa-chart-area"></i>
               <span>All Employees</span></a>
       </li>
@@ -48,5 +48,4 @@
       {{-- <div class="text-center d-none d-md-inline">
           <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div> --}}
-
   </ul>
