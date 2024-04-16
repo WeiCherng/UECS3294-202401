@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Experience extends Model
 {
     use HasFactory;
+    public $table="empexpireince";
 
     protected $fillable = [ 
         'EmpID',
@@ -24,4 +25,8 @@ class Experience extends Model
         'Employer3CTC',
         'Employer3WorkDuration',
     ];
+
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
 }

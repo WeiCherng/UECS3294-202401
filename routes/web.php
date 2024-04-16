@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ExperienceController;
@@ -67,3 +68,11 @@ Route::get('/education/{userId}/displayEducation', [EducationController::class, 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/admin',[AdminController::class,'loadAllEmp']);
+Route::get('editempeducation/{id}',[AdminController::class,'showEditEmpEdu']);
+Route::post('editempeducation/{id}',[AdminController::class,'editEmpEducation']);
+Route::get('editempexp/{id}',[AdminController::class,'showEditEmpExp']);
+Route::post('editempexp/{id}',[AdminController::class,'editEmpExperience']);
+Route::get('editempprofile/{id}',[AdminController::class,'showEditEmpPro']);
+Route::post('editempprofile/{id}',[AdminController::class,'editEmpProfile']);
