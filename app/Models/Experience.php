@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Experience extends Model
 {
     use HasFactory;
-    public $table="empexpireince";
+    // public $table="empexpireince";
 
     protected $fillable = [
         'CompanyName',

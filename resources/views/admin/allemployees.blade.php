@@ -53,13 +53,12 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
                             <tr>
-                                <th>S no.</th>
-                                <th>Emp Code</th>
-                                <th>Emp First Name</th>
-                                <th>Emp Last Name</th>
-                                <th>Emp Email</th>
-                                <th>Emp Contact no</th>
-                                <th>Emp Joining Date</th>
+                                <th>Employee ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Job Title</th>
+                                <th>Gender</th>
+                                <th>Contact no</th>
                                 <th>Action</th>
                             </tr>
                             @php
@@ -68,16 +67,16 @@
                             @foreach($employeedetail as $user)
                             <tr>
                                 <td>{{ ++$cnt }}</td>
-                                <td>{{$user['EmpCode']}}</td>
-                                <td>{{$user['EmpFname']}}</td>
-                                <td>{{$user['EmpLName']}}</td>
-                                <td>{{$user['EmpEmail']}}</td>
-                                <td>{{$user['EmpContactNo']}}</td>
-                                <td>{{$user['EmpJoingdate']}}</td>
+                                <td>{{$user['name']}}</td>
+                                <td>{{$user['email']}}</td>
+                                <td>{{$user['job title']}}</td>
+                                <td>{{$user['gender']}}</td>
+                                <td>{{$user['contactNo']}}</td>
                                 <td><a href="editempprofile/{{$user['ID']}}"><button class="btn btn-outline-primary" type="button">Edit Profile Details</button></a> 
                                     <a href="editempeducation/{{$user['ID']}}"><button class="btn btn-outline-primary" type="button">Edit Education
                                         Details</button></a> 
                                     <a href="editempexp/{{$user['ID']}}"><button class="btn btn-outline-primary" type="button">Edit Experience Details</button></a>
+                                    <a href="editempexp/{{$user['ID']}}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
                                 </td>
                             </tr>
                             @endforeach

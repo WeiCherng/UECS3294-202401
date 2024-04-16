@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
-    public $table="employeedetail";
+    public $table="users";
     
     //Specify the custom timestamp field name
     const CREATED_AT = 'PostingDate';

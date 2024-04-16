@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 // ADMIN
 Route::group(['middleware' => 'auth:admin'], function () {
-    // Route::view('/admin', 'admin');
+    Route::get('/admin', [AdminController::class, 'loadAllEmp']);
     Route::get('/admin/welcome', function () {
         return view('admin.welcome');
     });
@@ -62,6 +62,12 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admin/employees', function () {
         return view('admin.allemployees');
     });
+    Route::get('editempeducation/{id}', [AdminController::class, 'showEditEmpEdu']);
+    Route::post('editempeducation/{id}', [AdminController::class, 'editEmpEducation']);
+    Route::get('editempexp/{id}', [AdminController::class, 'showEditEmpExp']);
+    Route::post('editempexp/{id}', [AdminController::class, 'editEmpExperience']);
+    Route::get('editempprofile/{id}', [AdminController::class, 'showEditEmpPro']);
+    Route::post('editempprofile/{id}', [AdminController::class, 'editEmpProfile']);
 });
 
 // Authentication
@@ -75,10 +81,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/admin',[AdminController::class,'loadAllEmp']);
-Route::get('editempeducation/{id}',[AdminController::class,'showEditEmpEdu']);
-Route::post('editempeducation/{id}',[AdminController::class,'editEmpEducation']);
-Route::get('editempexp/{id}',[AdminController::class,'showEditEmpExp']);
-Route::post('editempexp/{id}',[AdminController::class,'editEmpExperience']);
-Route::get('editempprofile/{id}',[AdminController::class,'showEditEmpPro']);
-Route::post('editempprofile/{id}',[AdminController::class,'editEmpProfile']);
+
