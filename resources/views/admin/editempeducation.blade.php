@@ -45,122 +45,61 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Edit Employee Education</h1>
 
- <!-- <p style="font-size:16px; color:red" align="center"> -->
-<!-- php if($msg){ -->
-    <!-- //echo $msg;}   -->
-     <!-- </p> -->
+     <form action="" method="POST">
+                            @csrf
 
-<form class="user" method="post" action="editEmpEducation">
-    @csrf
-   <!-- php
- $aid=$_GET['editid'];
-$ret=mysqli_query($con,"select * from empeducation where ID='$aid'");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
+                            <div class="form-group mt-2">
+                                <label for="CourseProgram">Course Program</label>
+                                <input type="text" class="form-control @error('CourseProgram') is-invalid @enderror"
+                                    id="CourseProgram" name="CourseProgram"
+                                    value="{{$data['CourseProgram']}}" required>
+                                @error('CourseProgram')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-?> -->
-@if(isset($data['EmpID']))
-               <div class="row">
-               <input type="hidden" name="EmpID" value="{{$data['EmpID']}}">
-                <div class="col-4 mb-3">Course Post Graduation</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="coursepg" name="coursepg" aria-describedby="emailHelp" value="{{$data['CoursePG']}}"></div>
-                    </div>  
-                    <div class="row">
-                      <div class="col-4 mb-3">School/College Post Graduation </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="schoolclgpg" name="schoolclgpg" aria-describedby="emailHelp" value="{{$data['SchoolCollegePG']}}"></div>  
-                     </div>
+                            <div class="form-group mt-2">
+                                <label for="University">University Graduated</label>
+                                <input type="text" class="form-control @error('University') is-invalid @enderror"
+                                    id="University" name="University"
+                                    value="{{$data['University']}}">
+                                @error('University')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
+                            <div class="form-group mt-2">
+                                <label for="YearGraduate">Year Graduated</label>
+                                <input type="text" class="form-control @error('YearGraduate') is-invalid @enderror"
+                                    id="YearGraduate" name="YearGraduate"
+                                    value="{{$data['YearGraduate']}}">
+                                @error('YearGraduate')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
+                            <div class="form-group mt-2">
+                                <label for="Cgpa">Results (CGPA)</label>
+                                <input type="number" step="0.01"
+                                    class="form-control @error('Cgpa') is-invalid @enderror" id="Cgpa"
+                                    name="Cgpa" value="{{$data['Cgpa']}}">
+                                @error('Cgpa')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                    <div class="row">
-                    <div class="col-4 mb-3">Year of Passing Post Graduation </div>
-                    <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="yoppg" name="yoppg" aria-describedby="emailHelp" value="{{$data['YearPassingPG']}}"></div>
-                    </div>
+                            <div class="form-group mt-2">
+                                <label for="Achievements">Achievements</label>
+                                <input type="text" class="form-control @error('Achievements') is-invalid @enderror"
+                                    id="Achievements" name="Achievements"
+                                    value="{{$data['Achievements']}}">
+                                @error('Achievements')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                    <div class="row">
-                      <div class="col-4 mb-3">Percentage in PG</div>
-                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="pipg" name="pipg" aria-describedby="emailHelp" value="{{$data['PercentagePG']}}">
-                    </div></div>
-                    <div class="row">
-                <div class="col-4 mb-3">Course Graduation</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="coursegra" name="coursegra" aria-describedby="emailHelp" value="{{$data['CourseGra']}}"></div>
-                    </div>  
-                    <div class="row">
-                      <div class="col-4 mb-3">School/College Graduation </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="schoolclggra" name="schoolclggra" aria-describedby="emailHelp" value="{{$data['SchoolCollegeGra']}}"></div>  
-                     </div>
-
-
-
-                    <div class="row">
-                    <div class="col-4 mb-3">Year of Passing Graduation </div>
-                    <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="yopgra" name="yopgra" aria-describedby="emailHelp" value="{{$data['YearPassingGra']}}"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-4 mb-3">Percentage in Graduation</div>
-                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="pigra" name="pigra" aria-describedby="emailHelp" value="{{$data['PercentageGra']}}>">
-                    </div></div>
-                    <div class="row">
-                <div class="col-4 mb-3">Course SSC</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="coursessc" name="coursessc" aria-describedby="emailHelp" value="{{$data['CourseSSC']}}"></div>
-                    </div>  
-                    <div class="row">
-                      <div class="col-4 mb-3">School/College SSC </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="schoolclgssc" name="schoolclgssc" aria-describedby="emailHelp" value="{{$data['SchoolCollegeSSC']}}"></div>  
-                     </div>
-
-
-
-                    <div class="row">
-                    <div class="col-4 mb-3">Year of Passing SSC </div>
-                    <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="yopssc" name="yopssc" aria-describedby="emailHelp" value="{{$data['YearPassingSSC']}}"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-4 mb-3">Percentage in SSC</div>
-                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="pissc" name="pissc" aria-describedby="emailHelp" value="{{$data['PercentageSSC']}}">
-                    </div></div>
-                    <div class="row">
-                <div class="col-4 mb-3">Course HSC</div>
-                   <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="coursehsc" name="coursehsc" aria-describedby="emailHelp" value="{{$data['CourseHSC']}}"></div>
-                    </div>  
-                    <div class="row">
-                      <div class="col-4 mb-3">School/College HSC </div>
-                     <div class="col-8 mb-3">  <input type="text" class="form-control form-control-user" id="schoolclghsc" name="schoolclghsc" aria-describedby="emailHelp" value="{{$data['SchoolCollegeHSC']}}"></div>  
-                     </div>
-
-
-
-                    <div class="row">
-                    <div class="col-4 mb-3">Year of Passing HSC </div>
-                    <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="yophsc" name="yophsc" aria-describedby="emailHelp" value="{{$data['YearPassingHSC']}}"></div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-4 mb-3">Percentage in HSC</div>
-                     <div class="col-8 mb-3">
-                      <input type="text" class="form-control form-control-user" id="pihsc" name="pihsc" aria-describedby="emailHelp" value="{{$data['PercentageHSC']}}">
-                    </div></div>
-                    
-                   
-                    <div class="row" style="margin-top:4%">
-                      <div class="col-4"></div>
-                      <div class="col-4">
-                      <input type="submit" name="submit"  value="update" class="btn btn-primary btn-user btn-block">
-                    </div>
-                    </div>
-@else
-<p>No data available for editing</p>
-@endif
-                  </form>
+                            <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                        </form>
 
 
 
