@@ -47,165 +47,54 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">My Expirence</h1>
-
-                    {{-- <p style="font-size:16px; color:red" align="center"> <?php if ($msg) {
-                        echo $msg;
-                    } ?> </p> --}}
-
-                    <p style="font-size:16px; color:red" align="center">Your Experience details already added. Now you
-                        can only edit the record. </p>
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                        <tr>
-                            <th>First Employer Name</th>
-                            {{-- <td><?php echo $row['Employer1Name']; ?></td> --}}
-                        </tr>
-                        <tr>
-                            <th>First Employer Designation</th>
-                            {{-- <td><?php echo $row['Employer1Designation']; ?></td> --}}
-                        </tr>
-                        <tr>
-                            <th>First Employer CTC</th>
-                            {{-- <td><?php echo $row['Employer1CTC']; ?></td> --}}
-                        </tr>
-                        <tr>
-                            <th>First Employer Work Duration</th>
-                            {{-- <td><?php echo $row['Employer1WorkDuration']; ?></td> --}}
-                        </tr>
-                        <tr>
-                            <th>Second Employer Name</th>
-                            {{-- <td><?php echo $row['Employer2Name']; ?></td> --}}
-                        </tr>
-                        <tr>
-                            <th>Second Employer Designation</th>
-                            {{-- <td><?php echo $row['Employer2Designation']; ?></td> --}}
-                        </tr>
-                        <tr>
-                            <th>Second Employer CTC</th>
-                            {{-- <td><?php echo $row['Employer2CTC']; ?></td> --}}
-                        </tr>
-                        <tr>
-                            <th>Second Employer Work Duration</th>
-                            {{-- <td><?php echo $row['Employer2WorkDuration']; ?></td> --}}
-                        </tr>
-                        <tr>
-                            <th>Third Employer Name</th>
-                            {{-- <td><?php echo $row['Employer3Name']; ?></td> --}}
-                        </tr>
-                        <tr>
-                            <th>Third Employer Designation</th>
-                            {{-- <td><?php echo $row['Employer3Designation']; ?></td> --}}
-                        </tr>
-                        <tr>
-                            <th>Third Employer CTC</th>
-                            {{-- <td><?php echo $row['Employer3CTC']; ?></td> --}}
-                        </tr>
-                        <tr>
-                            <th>Third Employer Work Duration</th>
-                            {{-- <td><?php echo $row['Employer3WorkDuration']; ?></td> --}}
-                        </tr>
-
-                    </table>
-
-                    <form class="user" method="post" action="">
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer1 Name</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="emp1name" name="emp1name" aria-describedby="emailHelp" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer1 Designation </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="emp1des" name="emp1des" aria-describedby="emailHelp" value=""></div>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer1 CTC </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp1ctc"
-                                    name="emp1ctc" aria-describedby="emailHelp" value="">
+                    <div class="container">
+                        <h2>Your Experience</h2>
+                        <a href="/addExperience" class="btn btn-sm btn-primary my-4">Add Experience</a>
+                        @if (session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
-                        </div>
+                        @endif
 
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer1 WorkDuration</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp1workduration"
-                                    name="emp1workduration" aria-describedby="emailHelp" value="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer2 Name</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="emp2name" name="emp2name" aria-describedby="emailHelp" value=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer2 Designation </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="emp2des" name="emp2des" aria-describedby="emailHelp" value=""></div>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer2 CTC </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp2ctc"
-                                    name="emp2ctc" aria-describedby="emailHelp" value="">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer2 WorkDuration</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp2workduration"
-                                    name="emp2workduration" aria-describedby="emailHelp" value="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer3 Name</div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="emp3name" name="emp3name" aria-describedby="emailHelp" value="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer3 Designation </div>
-                            <div class="col-8 mb-3"> <input type="text" class="form-control form-control-user"
-                                    id="emp3des" name="emp3des" aria-describedby="emailHelp" value=""></div>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer3 CTC </div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp3ctc"
-                                    name="emp3ctc" aria-describedby="emailHelp" value="">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4 mb-3">Employer3 WorkDuration</div>
-                            <div class="col-8 mb-3">
-                                <input type="text" class="form-control form-control-user" id="emp3workduration"
-                                    name="emp3workduration" aria-describedby="emailHelp" value="">
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin-top:4%">
-                            <div class="col-4"></div>
-                            <div class="col-4">
-                                <input type="submit" name="submit" value="submit"
-                                    class="btn btn-primary btn-user btn-block">
-                            </div>
-                        </div>
-
-                    </form>
+                        @if ($experienceRecords->isEmpty())
+                            <p>You have no experience records.</p>
+                        @else
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Company Name</th>
+                                        <th scope="col">Role/Designation</th>
+                                        <th scope="col">Salary</th>
+                                        <th scope="col">Work Duration</th>
+                                        <th scope="col">Actions</th> <!-- Column for actions -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($experienceRecords as $record)
+                                        <tr>
+                                            <td>{{ $record->CompanyName }}</td>
+                                            <td>{{ $record->RoleDesignation }}</td>
+                                            <td>{{ $record->Salary }}</td>
+                                            <td>{{ $record->WorkDuration }}</td>
+                                            <td>
+                                                <!-- Edit and Delete buttons -->
+                                                <a href="{{ route('editmyexperience', $record->id) }}"
+                                                    class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('expDestroy', $record->id) }}"
+                                                    method="POST" style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 

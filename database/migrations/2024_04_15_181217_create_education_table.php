@@ -15,23 +15,13 @@ class CreateEducationTable extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('EmpID');
-            $table->string('CoursePG')->nullable();
-            $table->string('SchoolCollegePG')->nullable();
-            $table->string('YearPassingPG')->nullable();
-            $table->string('PercentagePG')->nullable();
-            $table->string('CourseGra')->nullable();
-            $table->string('SchoolCollegeGra')->nullable();
-            $table->string('YearPassingGra')->nullable();
-            $table->string('PercentageGra')->nullable();
-            $table->string('CourseSSC')->nullable();
-            $table->string('SchoolCollegeSSC')->nullable();
-            $table->string('YearPassingSSC')->nullable();
-            $table->string('PercentageSCC')->nullable();
-            $table->string('CourseHSC')->nullable();
-            $table->string('SchoolCollegeHSC')->nullable();
-            $table->string('YearPassingHSC')->nullable();
-            $table->string('PercentageHSC')->nullable();
+            // $table->unsignedBigInteger('EmpID');
+            $table->string('CourseProgram')->nullable();
+            $table->string('University')->nullable();
+            $table->string('YearGraduate')->nullable();
+            $table->string('Cgpa')->nullable();
+            $table->string('Achievements')->nullable();
+            $table->string('user_id');
             $table->timestamps();
         });
     } 

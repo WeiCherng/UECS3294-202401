@@ -38,22 +38,11 @@
             <span>My Exp</span></a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="editmyexp">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Edit my Exp</span></a>
-    </li>
-
     <!-- Nav Item - Tables -->
     <li class="nav-item">
         <a class="nav-link" href="myeducation">
             <i class="fas fa-fw fa-table"></i>
             <span>My Education</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="editmyeducation">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Edit My Education</span></a>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
