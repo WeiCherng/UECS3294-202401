@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Employee;
+use App\Models\Education;
+use App\Models\Experience;
 
 class AdminController extends Controller
 {
@@ -13,22 +15,22 @@ class AdminController extends Controller
     }
 
     function showEditEmpPro($id){
-        $data = User::find($id);
-        return view('editempprofile', ['data'=>$data]);
+        $data = Employee::find($id);
+        return view('admin/editempprofile', ['employee'=>$data]);
     }
 
     function editEmpExperience(Request $req){
-        $data = User::find($req->id);
+        $data = Experience::find($req->id);
         $data -> CoursePG = $req -> CoursePG;
     }
 
     function showEditEmpExp($id){
-        $data = User::find($id);
-        return view('editempexp', ['data'=>$data]);
+        $data = Experience::find($id);
+        return view('admin/editempexp', ['data'=>$data]);
     }
 
     function editEmpEducation(Request $req) {
-        $data = User::find($req->id);
+        $data = Employee::find($req->id)->education;
         $data -> CoursePG = $req -> CoursePG;
         $data -> SchoolCollegePG = $req -> SchoolCollegePG;
         $data -> YearPassingPG = $req -> YearPassingPG;
@@ -45,17 +47,17 @@ class AdminController extends Controller
         $data -> SchoolCollegeHSC = $req -> SchoolCollegeHSC;
         $data -> PercentageHSC = $req -> PercentageHSC;
         $data -> save();
-        return redirect('allemployees');
+        return redirect('admin/allemployees');
     }
 
     function showEditEmpEdu($id){
-        $data = User::find($id);
-        return view('editempeducation', ['data'=>$data]);
+        $data = Employee::find($id)->education;
+        return view('admin/editempeducation', ['data'=>$data]);
     }
 
     function loadAllEmp() {
-        $data = User::paginate(10);
-        return view('allemployees',['employeedetail' =>$data]);
+        $data = Employee::paginate(10);
+        return view('admin/allemployees',['employeedetail' =>$data]);
         // return User::all();
     }
 }

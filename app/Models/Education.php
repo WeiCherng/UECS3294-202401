@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Education extends Model
 {
     use HasFactory;
+    public $table="empeducation";
 
     protected $fillable = [
         'EmpID',
@@ -28,4 +29,8 @@ class Education extends Model
         'YearPassingHSC',
         'PercentageHSC',
     ];
+
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
 }

@@ -26,7 +26,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-  @include('layouts/sidebar.php')?>
+    @include('admin.layouts.sidebar')
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -36,7 +36,7 @@
       <div id="content">
 
         <!-- Topbar -->
-         <?php include_once('includes/header.php')?>
+        @include('layouts.app')
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -45,20 +45,21 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Edit Employee Education</h1>
 
-<p style="font-size:16px; color:red" align="center"> <?php if($msg){
-    echo $msg;
-  }  ?> </p>
+ <!-- <p style="font-size:16px; color:red" align="center"> -->
+<!-- php if($msg){ -->
+    <!-- //echo $msg;}   -->
+     <!-- </p> -->
 
 <form class="user" method="post" action="editEmpEducation">
     @csrf
-   <!-- <?php
+   <!-- php
  $aid=$_GET['editid'];
 $ret=mysqli_query($con,"select * from empeducation where ID='$aid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
 ?> -->
- 
+
                <div class="row">
                 <div class="col-4 mb-3">Course Post Graduation</div>
                    <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="coursepg" name="coursepg" aria-describedby="emailHelp" value="{{$data['CoursePG']}}"></div>
@@ -147,7 +148,7 @@ while ($row=mysqli_fetch_array($ret)) {
                      <div class="col-8 mb-3">
                       <input type="text" class="form-control form-control-user" id="pihsc" name="pihsc" aria-describedby="emailHelp" value="{{$data['PercentageHSC']}}">
                     </div></div>
-                    <?php } ?>
+                    
                    
                     <div class="row" style="margin-top:4%">
                       <div class="col-4"></div>
@@ -155,7 +156,7 @@ while ($row=mysqli_fetch_array($ret)) {
                       <input type="submit" name="submit"  value="update" class="btn btn-primary btn-user btn-block">
                     </div>
                     </div>
-                  
+
                   </form>
 
 
@@ -169,7 +170,7 @@ while ($row=mysqli_fetch_array($ret)) {
       <!-- End of Main Content -->
 
       <!-- Footer -->
-   @include('layouts/footer.php')
+   @include('admin.layouts.footer')
       <!-- End of Footer -->
 
     </div>

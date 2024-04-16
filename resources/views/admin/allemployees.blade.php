@@ -62,50 +62,27 @@
                                 <th>Emp Joining Date</th>
                                 <th>Action</th>
                             </tr>
-                            @foreach(users as user)
+                            @php
+                            $cnt = 0;
+                            @endphp
+                            @foreach($employeedetail as $user)
                             <tr>
-                                <td><?php echo $cnt; ?></td>
+                                <td>{{ ++$cnt }}</td>
                                 <td>{{$user['EmpCode']}}</td>
-                                <td>{{$user['EmpFName']}}</td>
+                                <td>{{$user['EmpFname']}}</td>
                                 <td>{{$user['EmpLName']}}</td>
                                 <td>{{$user['EmpEmail']}}</td>
-                                <td>{{$user['EmpContactNum']}}</td>
-                                <td>{{$user['EmpJoingDate']}}</td>
-                                <td><a href="editempprofile/{{$user['ID']}}">Edit Profile Details</a> |
-                                    <a href="editempeducation/{{$user['ID']}}">Edit Education
-                                        Details</a> |
-                                    <a href="editempexp/{{$user['ID']}}">Edit Experience Details</a>
+                                <td>{{$user['EmpContactNo']}}</td>
+                                <td>{{$user['EmpJoingdate']}}</td>
+                                <td><a href="editempprofile/{{$user['ID']}}"><button class="btn btn-outline-primary" type="button">Edit Profile Details</button></a> 
+                                    <a href="editempeducation/{{$user['ID']}}"><button class="btn btn-outline-primary" type="button">Edit Education
+                                        Details</button></a> 
+                                    <a href="editempexp/{{$user['ID']}}"><button class="btn btn-outline-primary" type="button">Edit Experience Details</button></a>
                                 </td>
                             </tr>
-{{-- 
-                            <?php
-$ret=mysqli_query($con,"select * from employeedetail");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
-
-?>
-
-                            <tr>
-                                <td><?php echo $cnt; ?></td>
-                                <td><?php echo $row['EmpCode']; ?></td>
-                                <td><?php echo $row['EmpFname']; ?></td>
-                                <td><?php echo $row['EmpLName']; ?></td>
-                                <td><?php echo $row['EmpEmail']; ?></td>
-                                <td><?php echo $row['EmpContactNo']; ?></td>
-                                <td><?php echo $row['EmpJoingdate']; ?></td>
-                                <td><a href="editempprofile.php?editid=<?php echo $row['ID']; ?>">Edit Profile Details</a> |
-                                    <a href="editempeducation.php?editid=<?php echo $row['ID']; ?>">Edit Education
-                                        Details</a> |
-                                    <a href="editempexp.php?editid=<?php echo $row['ID']; ?>">Edit Experience Details</a>
-                                </td>
-                            </tr>
-
-                            <?php 
-$cnt=$cnt+1;
-}?> --}}
-
+                            @endforeach
                         </table>
-
+                        <span>{{$employeedetail->links()}}</span>
                     </div>
 
 
@@ -131,7 +108,7 @@ $cnt=$cnt+1;
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <!-- <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
@@ -156,3 +133,8 @@ $cnt=$cnt+1;
 </body>
 
 </html>
+<style>
+.w-5{
+display: none
+}
+</style>
