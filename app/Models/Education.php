@@ -15,7 +15,7 @@ class Education extends Model
         'CoursePG',
         'SchoolCollegePG',
         'YearPassingPG',
-        'PercentagePG',
+        'PercentagePG', 
         'CourseGra',
         'SchoolCollegeGra',
         'YearPassingGra',

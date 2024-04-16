@@ -34,7 +34,7 @@ class CreateEducationTable extends Migration
             $table->string('PercentageHSC')->nullable();
             $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.
