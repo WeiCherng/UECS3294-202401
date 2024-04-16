@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Experience extends Model
 {
     use HasFactory;
+    public $table="empexpireince";
 
     protected $fillable = [
         'CompanyName',
@@ -15,4 +16,8 @@ class Experience extends Model
         'Salary',
         'WorkDuration',
     ];
+
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
 }
