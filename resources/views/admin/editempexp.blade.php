@@ -26,7 +26,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-  @layouts('layouts/sidebar.php')?>
+  @include('admin.layouts.sidebar')
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -36,7 +36,7 @@
       <div id="content">
 
         <!-- Topbar -->
-         @include('layouts/header.php')?>
+        @include('layouts.app')
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -45,19 +45,20 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Edit Employee Expirence</h1>
 
-<p style="font-size:16px; color:red" align="center"> <?php if($msg){
+<!-- <p style="font-size:16px; color:red" align="center"> ?php if($msg){
     echo $msg;
-  }  ?> </p>
+  }  ?> </p> -->
 
 <form class="user" method="post" action="editEmpExperience">
     @csrf
-  <?php
+  <!-- ?php
  $aid=$_GET['editid'];
 $ret=mysqli_query($con,"select * from empexpireince where ID='$aid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
-?>
+?> -->
+@if(isset($data['ID']))
                <div class="row">
                 <div class="col-4 mb-3">Employer1 Name</div>
                    <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="emp1name" name="emp1name" aria-describedby="emailHelp" value="{{$data['Employer1Name']}}"></div>
@@ -124,14 +125,16 @@ while ($row=mysqli_fetch_array($ret)) {
                      <div class="col-8 mb-3">
                       <input type="text" class="form-control form-control-user" id="emp3workduration" name="emp3workduration" aria-describedby="emailHelp" value="{{$data['Employer3WorkDuration']}}">
                     </div></div>
-<?php } ?>
+<!-- ?php  ? -->
                     <div class="row" style="margin-top:4%">
                       <div class="col-4"></div>
                       <div class="col-4">
                       <input type="submit" name="submit"  value="Update" class="btn btn-primary btn-user btn-block">
                     </div>
                     </div>
-                  
+                    @else
+<p>No data available for editing</p>
+@endif
                   </form>
 
 
@@ -145,7 +148,7 @@ while ($row=mysqli_fetch_array($ret)) {
       <!-- End of Main Content -->
 
       <!-- Footer -->
-   @include('layouts/footer.php');?>
+   @include('admin.layouts.footer')
       <!-- End of Footer -->
 
     </div>

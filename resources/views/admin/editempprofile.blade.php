@@ -26,7 +26,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-  @include('layouts/sidebar.php')
+  @include('admin.layouts.sidebar')
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -36,7 +36,7 @@
       <div id="content">
 
         <!-- Topbar -->
-         @include('layouts/header.php')
+        @include('layouts.app')
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -45,20 +45,13 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Edit Employee Profile</h1>
 
-<p style="font-size:16px; color:red" align="center"> <?php if($msg){
-    echo $msg;
-  }  ?> </p>
 
-<form class="user" method="post" action="editEmpProfile">
+
+<form class="user" method="POST" action="editEmpProfile">
   @csrf
-  <?php
-$aid=$_GET['editid'];
-$ret=mysqli_query($con,"select * from employeedetail where ID='$aid'");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
-
-?>
+  @if(isset($data['ID']))
                <div class="row">
+               <input type="hidden" name="id" value="{{$data['ID']}}">
                 <div class="col-4 mb-3">First Name</div>
                    <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="FirstName" name="FirstName" aria-describedby="emailHelp" value="{{$data['EmpFname']}}"></div>
                     </div>  
@@ -106,24 +99,25 @@ while ($row=mysqli_fetch_array($ret)) {
                       <div class="col-4 mb-3">Gender</div>
                     <div class="col-4 mb-3">
                     
-<?php if($row['EmpGender']=="Male")
-{?>
+                      @if($data['EmpGender']=='Male')
                       <input type="radio" id="gender" name="gender" value="Male" checked="true">Male
 
                      <input type="radio" name="gender" value="Female">Female
-                   <?php }  else {?>
+                 @else
  <input type="radio" id="gender" name="gender" value="Male" >Male
   <input type="radio" name="gender" value="Female" checked="true">Female
-                   <?php }?>
+                 @endif
                     </div></div>
-<?php } ?>
+
                     <div class="row" style="margin-top:4%">
                       <div class="col-4"></div>
                       <div class="col-4">
-                      <input type="submit" name="submit"  value="Update" class="btn btn-primary btn-user btn-block">
+                      <input type="submit" name="submit" class="btn btn-primary btn-user btn-block">
                     </div>
                     </div>
-                  
+                    @else
+    <td>N/A</td>
+@endif
                   </form>
 
 
@@ -137,7 +131,7 @@ while ($row=mysqli_fetch_array($ret)) {
       <!-- End of Main Content -->
 
       <!-- Footer -->
-   @include('layouts/footer.php')
+   @include('admin.layouts.footer')
       <!-- End of Footer -->
 
     </div>

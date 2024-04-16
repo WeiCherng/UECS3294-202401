@@ -59,8 +59,9 @@ $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
 ?> -->
-
+@if(isset($data['EmpID']))
                <div class="row">
+               <input type="hidden" name="EmpID" value="{{$data['EmpID']}}">
                 <div class="col-4 mb-3">Course Post Graduation</div>
                    <div class="col-8 mb-3">   <input type="text" class="form-control form-control-user" id="coursepg" name="coursepg" aria-describedby="emailHelp" value="{{$data['CoursePG']}}"></div>
                     </div>  
@@ -156,7 +157,9 @@ while ($row=mysqli_fetch_array($ret)) {
                       <input type="submit" name="submit"  value="update" class="btn btn-primary btn-user btn-block">
                     </div>
                     </div>
-
+@else
+<p>No data available for editing</p>
+@endif
                   </form>
 
 
