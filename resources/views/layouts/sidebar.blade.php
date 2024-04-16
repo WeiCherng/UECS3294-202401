@@ -33,14 +33,14 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="myexp">
+        <a class="nav-link" href="/myexp">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>My Exp</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="myeducation">
+        <a class="nav-link" href="/myeducation">
             <i class="fas fa-fw fa-table"></i>
             <span>My Education</span></a>
     </li>
