@@ -38,6 +38,13 @@
               <span>All Employees</span></a>
       </li>
 
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+          <a class="nav-link" href="/admin/tasks">
+              <i class="fas fa-fw fa-chart-area"></i>
+              <span>Tasks</span></a>
+      </li>
+
 
 
 

@@ -60,18 +60,102 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-3">
                                                 Welcome Back to ERMS !</div>
+                                            <div class="container">
+                                                <div class="row">
 
-                                            @can('isAdmin')
-                                                <div class="btn btn-success btn-lg">
-                                                    You have Admin Access
+                                                    <!-- Employee General Information -->
+                                                    <div class="col-6">
+
+                                                        <div class="card mb-3">
+                                                            <div class="card-header">
+                                                                <h5>General Information</h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p><strong>Name:</strong> {{ $user->name }}</p>
+                                                                <p><strong>Email:</strong> {{ $user->email }}</p>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-6">
+
+                                                        <!-- Tasks Section -->
+                                                        <div class="card mb-3">
+                                                            <div class="card-header">
+                                                                <h5>Tasks</h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                @if ($tasks->isEmpty())
+                                                                    <p>No tasks assigned.</p>
+                                                                @else
+                                                                    <ul>
+                                                                        @foreach ($tasks as $task)
+                                                                            <li>{{ $task->title }} 
+                                                                                @if ($task->status === 'pending')
+                                                                                <span class="badge bg-warning text-dark">Pending</span>
+                                                                            @elseif ($task->status === 'in progress')
+                                                                                <span class="badge bg-primary">In Progress</span>
+                                                                            @elseif ($task->status === 'completed')
+                                                                                <span class="badge bg-success">Completed</span>
+                                                                            @endif
+                                                                        </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                    <div class="col-6">
+
+                                                        <!-- Education Section -->
+                                                        <div class="card mb-3">
+                                                            <div class="card-header">
+                                                                <h5>Education</h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                @if ($education->isEmpty())
+                                                                    <p>No education records.</p>
+                                                                @else
+                                                                    <ul>
+                                                                        @foreach ($education as $edu)
+                                                                            <li>{{ $edu->CourseProgram }} - University:
+                                                                                {{ $edu->University }} - Year:
+                                                                                {{ $edu->YearGraduate }}</li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                @endif
+                                                            </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Experience Section -->
+                                                    <div class="col-6">
+
+                                                        <div class="card mb-3">
+                                                            <div class="card-header">
+                                                                <h5>Experience</h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                @if ($experience->isEmpty())
+                                                                    <p>No experience records.</p>
+                                                                @else
+                                                                    <ul>
+                                                                        @foreach ($experience as $exp)
+                                                                            <li>{{ $exp->CompanyName }} - Role:
+                                                                                {{ $exp->RoleDesignation }} - Duration:
+                                                                                {{ $exp->WorkDuration }}</li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            @else
-                                                <div class="btn btn-info btn-lg">
-                                                    You have User Access
-                                                </div>
-                                            @endcan
+                                            </div>
 
                                             {{-- <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $fname . ' ' . $lname; ?> --}}
                                         </div>

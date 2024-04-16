@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('department')->nullable();
-            $table->string('job title')->nullable();
+            $table->string('jobTitle')->nullable();
             $table->string('gender')->nullable();
-            $table->integer('contactNo')->nullable();
+            $table->string('contactNo', 20)->change();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -61,18 +61,50 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Welcome Back to ERMS !</div>
-                                                @can('isAdmin')
-                                                <div class="btn btn-success btn-lg">
+                                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
+                                                Welcome Back to ERMS !
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            @can('isAdmin')
+                                                <div class="btn btn-success btn-sm">
                                                     You have Admin Access
                                                 </div>
                                             @else
-                                                <div class="btn btn-info btn-lg">
+                                                <div class="btn btn-info btn-sm">
                                                     You have User Access
                                                 </div>
                                             @endcan
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">NAME
+                                        </div>
+                                        <div class="container mt-5">
+                                            <h4 class="text-md">Dashboard</h4>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Pending Tasks</h5>
+                                                            <p class="card-text">{{ $taskCounts['pending'] }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">In Progress Tasks</h5>
+                                                            <p class="card-text">{{ $taskCounts['in_progress'] }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Completed Tasks</h5>
+                                                            <p class="card-text">{{ $taskCounts['completed'] }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-auto">
